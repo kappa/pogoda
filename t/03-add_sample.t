@@ -1,11 +1,8 @@
 #! /usr/bin/perl
 use Test::Most qw/no_plan/;
-use YAML qw/LoadFile/;
-use Pogoda::DB;
 
-my $cfg = LoadFile('config.yml');
-
-my $dbc = Pogoda::DB->connect($cfg->{db_source});
+use Pogoda::Test;
+my ($cfg, $dbc) = pogoda_test;
 
 use_ok('Pogoda::Samples');
 
