@@ -1,4 +1,5 @@
 layout: "main"
 logger: "file"
 port: 3042
-db_source: "dbi:SQLite:dbname=/tmp/pogoda2.sqlite"
+sqlite_file: "/tmp/pogoda2.sqlite"
+sqlite_file_test: "/tmp/pogoda2-test.sqlite"

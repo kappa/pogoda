@@ -4,7 +4,7 @@ use Carp;
 
 use base 'Exporter';
 
-our @EXPORT = qw/add_sample/;
+our @EXPORT = qw/add_sample debug_all_samples/;
 
 sub add_sample {
     my ($dbc, $params) = @_;
@@ -25,6 +25,14 @@ sub add_sample {
     else {
         croak "Wrong passwd";
     }
+}
+
+sub debug_all_samples {
+    my ($dbc) = @_;
+
+    my @samples = $dbc->resultset('Sample')->all;
+
+    return @samples;
 }
 
 1;
