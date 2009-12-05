@@ -1,0 +1,12 @@
+<h2>Форма для проверки постинга сэмлов</h2>
+
+<form action="post_sample" method="get">
+Логин: <input name="login"><br>
+Пароль: <input name="passwd"><br>
+Широта: <input name="geo_lat"><br>
+Долгота: <input name="geo_long"><br>
+Температура: <input name="sensor_temp"><br>
+<input type=submit value="Отправить!">
+</form>
+
+<a href="/get_test_data">Просмотр тестовых сабмитов</a>

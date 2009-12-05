@@ -1,0 +1,10 @@
+<table>
+<% FOREACH sample IN samples %>
+<tr>
+<td>time: <% sample.ctime %>
+<td>latitude: <% sample.geo_lat %>
+<td>longtitude: <% sample.geo_long %>
+<td>sensor_temp: <% sample.sensor_temp %>
+</tr>
+<% END %>
+</table>
