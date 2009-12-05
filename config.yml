@@ -1,5 +1,7 @@
 layout: "main"
 logger: "file"
 port: 3042
+auto_reload: 1
+template: template_toolkit
 sqlite_file: "/tmp/pogoda2.sqlite"
 sqlite_file_test: "/tmp/pogoda2-test.sqlite"
