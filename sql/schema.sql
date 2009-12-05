@@ -4,7 +4,7 @@ create table samples (
 	geo_lat NUMBER,
 	geo_long NUMBER,
 	sensor_temp NUMBER,
-	ctime TIMESTAMP
+	ctime TIMESTAMP default current_timestamp
 );
 
 create table users (
@@ -12,5 +12,6 @@ create table users (
 	login TEXT,
 	passwd TEXT,
 	name TExT,
-	ctime TIMESTAMP
+	ctime TIMESTAMP default current_timestamp
 );
+insert into users (login, passwd, name) values ('kappa', 'passwd1', 'Alex Kapranoff');
