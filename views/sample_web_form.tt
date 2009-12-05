@@ -1,0 +1,7 @@
+<form method="post">
+Место: <input name="geo_lat">, <input name="geo_long"><br>
+Температура: <input name="sensor_temp"> C&deg;<br>
+<input type=submit name=submit value="Отправить!">
+<input type=hidden name=login value=kappa>
+<input type=hidden name=passwd value=passwd1>
+</form>

@@ -13,6 +13,28 @@ before sub {
         Pogoda::DB->connect("dbi:SQLite:dbname=" . set('sqlite_file_test')); # XXX
 };
 
+# --------------------------------------------------
+# Web UI
+# --------------------------------------------------
+
+get '/sample' => sub {
+    template 'sample_web_form.tt';
+};
+post '/sample' => sub {
+    if (params->{submit}) {
+        add_sample(vars->{dbc}, params);
+
+        template 'thanks.tt';
+    }
+    else {
+        status 503;
+    }
+};
+
+# --------------------------------------------------
+# API
+# --------------------------------------------------
+
 get '/get_test_data' => sub {
     my @samples = debug_all_samples(vars->{dbc});
 
