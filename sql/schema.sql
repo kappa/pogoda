@@ -6,3 +6,11 @@ create table samples (
 	sensor_temp NUMBER,
 	ctime TIMESTAMP
 );
+
+create table users (
+	id INTEGER PRIMARY KEY,
+	login TEXT,
+	passwd TEXT,
+	name TExT,
+	ctime TIMESTAMP
+);
