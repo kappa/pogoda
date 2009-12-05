@@ -8,6 +8,7 @@ __PACKAGE__->add_columns(qw/
     login
     passwd
     name
+    email
 /);
 __PACKAGE__->add_columns(ctime => {data_type => 'datetime'});
 __PACKAGE__->set_primary_key('id');

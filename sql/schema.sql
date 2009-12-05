@@ -11,7 +11,8 @@ create table users (
 	id INTEGER PRIMARY KEY,
 	login TEXT,
 	passwd TEXT,
-	name TExT,
+	name TEXT,
+	email TEXT,
 	ctime TIMESTAMP default current_timestamp
 );
-insert into users (login, passwd, name) values ('kappa', 'passwd1', 'Alex Kapranoff');
+insert into users (login, passwd, name, email) values ('kappa', 'passwd1', 'Alex Kapranoff', 'kkapp@rambler.ru');
