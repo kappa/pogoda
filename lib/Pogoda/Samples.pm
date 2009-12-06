@@ -4,7 +4,7 @@ use Carp;
 
 use base 'Exporter';
 
-our @EXPORT = qw/add_sample debug_all_samples/;
+our @EXPORT = qw/add_sample debug_all_samples get_user_samples/;
 
 sub add_sample {
     my ($dbc, $params) = @_;
@@ -31,6 +31,14 @@ sub debug_all_samples {
     my ($dbc) = @_;
 
     my @samples = $dbc->resultset('Sample')->all;
+
+    return @samples;
+}
+
+sub get_user_samples {
+    my ($dbc, $user_id) = @_;
+
+    my @samples = $dbc->resultset('Sample')->search({ userid => $user_id })->all;
 
     return @samples;
 }

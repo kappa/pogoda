@@ -1,5 +1,20 @@
 <h2>Здравствуйте, <% user.name %>!</h2>
 
+<% IF samples %>
 <h3>Ваши данные</h3>
+<table>
+<% FOREACH sample IN samples %>
+<tr>
+<td>Время: <% sample.ctime %>
+<td>Широта: <% sample.geo_lat %>
+<td>Долгота: <% sample.geo_long %>
+<td>Температура: <% sample.sensor_temp %>
+</tr>
+<% END %>
+</table>
+<% ELSE %>
+<h3>Вы пока не добавляли данных</h3>
+<% END %>
+<p><a href="/sample">Добавить</a></p>
 
 <h3>Ваши места</h3>

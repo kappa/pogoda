@@ -53,7 +53,10 @@ get '/user' => sub {
         redirect '/login?back=/user';
     }
 
-    template 'user' => { user => vars->{user} };
+    template 'user' => {
+        user    => vars->{user},
+        samples => get_user_samples(vars->{dbc}, session('user_id'))
+    };
 };
 
 get '/logout' => sub {
