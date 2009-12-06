@@ -10,7 +10,11 @@ use warnings;
 get '/' => sub {
     my @samples = debug_all_samples(vars->{dbc});
 
-    template 'index' => { samples => \@samples, user => vars->{user} };
+    template 'index' => {
+        samples => \@samples,
+        user => vars->{user},
+        need_gmap => 1,
+    };
 };
 
 before sub {

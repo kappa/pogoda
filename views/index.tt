@@ -12,12 +12,17 @@
 <td><% sample.sensor_temp %>
 </tr>
 <% END %>
+</table>
+<br>
+
+<div id="map" style="width: 40em; height: 30em"></div>
 
 <script>
-var temperatureData = {
+var temperatureData = [
 <% FOREACH sample IN samples %>
-['lat':<% sample.geo_lat %>, 'lng':<% sample.geo_long %>, 'value':<% sample.sensor_temp %>],
+{'lat':<% sample.geo_lat %>, 'lng':<% sample.geo_long %>, 'value':<% sample.sensor_temp %>},
 <% END %>
-};
+];
+var show_temp_data = 1;
 </script>
 </table>

@@ -2,7 +2,13 @@
 		var geocoder = null;
 		var curLat = null;
 		var curLong = null;
+		var curMarkerOverlay = null;
 		var userOverlays = [];
+		var temperatureData = [
+			{'lat': 59.956697, 'lng':30.311075, 'value': '23'},
+			{'lat': 59.957697, 'lng':30.311185, 'value': '24'},
+			{'lat': 59.958697, 'lng':30.311295, 'value': '25'},
+		];
 
 		var eventListeners = [];
 
@@ -12,17 +18,15 @@
 				map.setCenter(new GLatLng(59.956697,30.311075), 15);
 				map.setUIToDefault();
 				GEvent.addListener(map, 'addoverlay',
-					function(overlay) {
-						userOverlays.push(overlay);
-					}
-				);
-				GEvent.addListener(map, 'removeoverlay',
-					function(overlay) {
+					function (overlay) {
 						userOverlays.push(overlay);
 					}
 				);
 				geocoder = new GClientGeocoder();
-                                setUserLocation('geo-lat','geo-long');
+                                if (window.show_temp_data)
+                                    showTemperatureData(temperatureData);
+                                else
+                                    setUserLocation('geo-lat','geo-long');
 			}
 		}
 
@@ -39,6 +43,8 @@
 							var lng_field = document.getElementById(textLng);
 							if (lat_field) { lat_field.value = lat; };
 							if (lng_field) { lng_field.value = lng; };
+							clearUserOverlays();
+							map.addOverlay(new GMarker(new GLatLng(lat,lng)));
 						}
 					);
 					btn.value = "Stop!";
@@ -68,7 +74,7 @@
 		
 		function showPlaces(places) {
 			if (!places || (places.Status.code != 200)) {
-				alert('Ничего не найдено');
+				alert('Nothing Found');
 			} else {
 				var place = places.Placemark[0];
 				var point = new GLatLng(place.Point.coordinates[1], place.Point.coordinates[0]);
@@ -85,7 +91,20 @@
 		}
 		
 		function clearUserOverlays() {
-			for (var overlay in userOverlays) {
-				map.removeOverlay(overlay);
+			for (var i = 0; i < userOverlays.length; ++i) {
+				map.removeOverlay(userOverlays[i]);
+			}
+		}
+		
+		function showTemperatureData(temperatureData) {
+			if (map && map.isLoaded) {
+				for (var i=0; i < temperatureData.length; ++i) {
+					var data = temperatureData[i];
+					var point = new GLatLng(data['lat'], data['lng']);
+					var marker = new GMarker(point, {title : data['value']});
+					map.addOverlay(marker);
+					marker.bindInfoWindowHtml('Temperature: '+data['value']);
+					
+				}
 			}
 		}
