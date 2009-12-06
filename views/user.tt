@@ -2,7 +2,7 @@
 
 <% IF samples %>
 <h3>Ваши данные</h3>
-<table>
+<table class="data">
 <tr>
 <th>Время <th>Широта <th>Долгота <th>Температура
 </tr>

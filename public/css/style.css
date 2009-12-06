@@ -33,7 +33,7 @@ body {
     padding-top: 0.5em;
 }
 
-table, td, th {
+table.data, table.data td, table.data th {
     border: 1px solid black;
 }
 th {

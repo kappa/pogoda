@@ -30,7 +30,10 @@ get '/sample' => sub {
     unless (vars->{user}) {
         redirect '/login?back=/sample';
     }
-    template 'sample_web_form' => { user => vars->{user} };
+    template 'sample_web_form' => {
+        user => vars->{user},
+        need_gmap => 1,
+    };
 };
 post '/sample' => sub {
     unless (vars->{user}) {
