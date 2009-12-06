@@ -3,5 +3,7 @@ logger: "file"
 port: 3042
 auto_reload: 1
 template: template_toolkit
+session: "yaml"
+session_dir: "/tmp/pogoda2/sessions"
 sqlite_file: "/tmp/pogoda2.sqlite"
 sqlite_file_test: "/tmp/pogoda2-test.sqlite"

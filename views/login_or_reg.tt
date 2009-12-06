@@ -1,0 +1,16 @@
+Войти:
+<form action="/login" method="post">
+Логин: <input name=login><br>
+Пароль: <input name=passwd>
+<input type=submit value="Войти">
+</form>
+
+или зарегаться:
+<form action="reg" method="post">
+Логин: <input name=login><br>
+Пароль: <input name=passwd><br>
+Пароль второй раз: <input name=passwd2><br>
+Имя: <input name=name><br>
+Email: <input name=email>
+<input type=submit value="Зарегистрироваться">
+</form>

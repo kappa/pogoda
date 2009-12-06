@@ -2,7 +2,9 @@ package Pogoda;
 use Dancer;
 use Template;
 use Pogoda::Samples;
+use Pogoda::Users;
 use Pogoda::DB;
+use Data::Dumper;
 
 get '/' => sub {
     template 'index';
@@ -18,6 +20,9 @@ before sub {
 # --------------------------------------------------
 
 get '/sample' => sub {
+    if (! session('user_id')) {
+        redirect '/user';
+    }
     template 'sample_web_form.tt';
 };
 post '/sample' => sub {
@@ -29,6 +34,29 @@ post '/sample' => sub {
     else {
         status 503;
     }
+};
+
+get '/user' => sub {
+    template 'login_or_reg.tt';
+};
+
+post '/login' => sub {
+    my $user;
+    if (params->{login} && params->{passwd}
+        && ($user = check_user(vars->{dbc}, params)))
+    {
+        session user_id => $user->id;
+        session user_login => $user->login;
+    }
+};
+
+post '/reg' => sub {
+    my $user = add_user(vars->{dbc}, params);
+
+    session user_id => $user->id;
+    session user_login => $user->login;
+
+    template 'thanks.tt';
 };
 
 # --------------------------------------------------
