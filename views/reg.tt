@@ -1,0 +1,11 @@
+<h2>Зарегистрироваться</h2>
+
+<form action="reg" method="post">
+Логин: <input name=login><br>
+Пароль: <input name=passwd type=password><br>
+Пароль второй раз: <input name=passwd2 type=password><br>
+Имя: <input name=name><br>
+Email: <input name=email>
+<input type=submit value="Зарегистрироваться">
+<input type=hidden name=back value="<% back | html %>">
+</form>

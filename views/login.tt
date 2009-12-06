@@ -1,0 +1,10 @@
+<h2>Войти</h2>
+
+<p>Если у Вас нет логина, то <a href="/reg<% IF back %>?back=<% back | url %><% END %>">зарегистрируйтесь</a>.</p>
+
+<form action="/login" method="post">
+Логин: <input name=login><br>
+Пароль: <input name=passwd type=password>
+<input type=submit value="Войти">
+<input type=hidden name=back value="<% back | html %>">
+</form>

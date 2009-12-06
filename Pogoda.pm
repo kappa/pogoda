@@ -4,17 +4,20 @@ use Template;
 use Pogoda::Samples;
 use Pogoda::Users;
 use Pogoda::DB;
-use Data::Dumper;
 
 get '/' => sub {
     my @samples = debug_all_samples(vars->{dbc});
 
-    template 'index' => { samples => \@samples };
+    template 'index' => { samples => \@samples, user => vars->{user} };
 };
 
 before sub {
     var dbc =>
         Pogoda::DB->connect("dbi:SQLite:dbname=" . set('sqlite_file_test')); # XXX
+
+    if (session('user_id')) {
+        var user => vars->{dbc}->resultset('User')->search({ id => session('user_id') })->first;
+    }
 };
 
 # --------------------------------------------------
@@ -22,19 +25,19 @@ before sub {
 # --------------------------------------------------
 
 get '/sample' => sub {
-    if (! session('user_id')) {
-        redirect '/user?back=/sample';
+    unless (vars->{user}) {
+        redirect '/login?back=/sample';
     }
-    template 'sample_web_form';
+    template 'sample_web_form' => { user => vars->{user} };
 };
 post '/sample' => sub {
-    if (! session('user_id')) {
+    unless (vars->{user}) {
         redirect '/sample';
     }
     if (params->{submit}) {
         add_sample(vars->{dbc}, params);
 
-        template 'thanks';
+        template 'thanks' => { user => vars->{user} };
     }
     else {
         status 503;
@@ -42,7 +45,29 @@ post '/sample' => sub {
 };
 
 get '/user' => sub {
-    template 'login_or_reg';
+    unless (vars->{user}) {
+        redirect '/login?back=/user';
+    }
+
+    template 'user' => { user => vars->{user} };
+};
+
+get '/logout' => sub {
+    if (vars->{user}) {
+        session user_id => undef;
+        var user => undef;
+    }
+
+    redirect params->{back} || '/';
+};
+
+get '/login' => sub {
+    if (vars->{user}) {
+        redirect params->{back} || '/';
+    }
+    else {
+        template 'login' => { back => params->{back} };
+    }
 };
 
 post '/login' => sub {
@@ -54,7 +79,16 @@ post '/login' => sub {
         session user_login => $user->login;
     }
 
-    redirect params->{back} || '/';
+    redirect params->{back} || '/user';
+};
+
+get '/reg' => sub {
+    if (vars->{user}) {
+        redirect params->{back} || '/';
+    }
+    else {
+        template 'reg' => { back => params->{back} };
+    }
 };
 
 post '/reg' => sub {
@@ -63,7 +97,7 @@ post '/reg' => sub {
     session user_id => $user->id;
     session user_login => $user->login;
 
-    template 'thanks';
+    redirect params->{back} || '/user';
 };
 
 # --------------------------------------------------

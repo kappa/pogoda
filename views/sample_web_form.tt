@@ -1,5 +1,9 @@
+<h2>Добавление данных</h2>
 <form method="post">
-Место: <input name="geo_lat">, <input name="geo_long"><br>
+<h3>Ваше местоположение</h3>
+Широта: <input name="geo_lat"><br>
+Долгота: <input name="geo_long"><br>
+<h3>Ваши наблюдения</h3>
 Температура: <input name="sensor_temp"> C&deg;<br>
 <input type=submit name=submit value="Отправить!">
 <input type=hidden name=login value="<% user_login | html %>">
