@@ -1,4 +1,6 @@
 package Pogoda::Samples;
+use strict;
+use warnings;
 
 use Carp;
 
@@ -33,9 +35,9 @@ sub debug_all_samples {
 }
 
 sub get_user_samples {
-    my ($dbc, $user_id) = @_;
+    my ($dbc, $user) = @_;
 
-    my @samples = $dbc->resultset('Sample')->search({ userid => $user_id })->all;
+    my @samples = $dbc->resultset('Sample')->search({ userid => $user->id })->all;
 
     return @samples;
 }

@@ -1,4 +1,6 @@
 package Pogoda::Users;
+use strict;
+use warnings;
 
 use Carp;
 

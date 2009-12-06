@@ -4,6 +4,8 @@ use Template;
 use Pogoda::Samples;
 use Pogoda::Users;
 use Pogoda::DB;
+use strict;
+use warnings;
 
 get '/' => sub {
     my @samples = debug_all_samples(vars->{dbc});
@@ -55,7 +57,7 @@ get '/user' => sub {
 
     template 'user' => {
         user    => vars->{user},
-        samples => [get_user_samples(vars->{dbc}, session('user_id'))]
+        samples => [get_user_samples(vars->{dbc}, vars->{user})]
     };
 };
 
