@@ -7,7 +7,9 @@ use Pogoda::DB;
 use Data::Dumper;
 
 get '/' => sub {
-    template 'index';
+    my @samples = debug_all_samples(vars->{dbc});
+
+    template 'index' => { samples => \@samples };
 };
 
 before sub {

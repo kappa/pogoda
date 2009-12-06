@@ -4,6 +4,27 @@ body {
     background-color: #1f1b1a;
 }
 
+#logo a {
+    text-decoration: none;
+}
+
+#toolbar {
+    background-color: #eee;
+    color: #000;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#toolbar p {
+    text-align: center;
+    padding: 0.5em;
+}
+
+#toolbar a {
+    color: black;
+}
+
 #content {
     color: #000;
     background-color: #eee;

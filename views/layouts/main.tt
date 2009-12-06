@@ -8,6 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-<h1>pogoda</h1><div id="content"><p><% content %></p></div><div id="footer">Powered by <a href="http://dancer.sukria.net">Dancer</a></div>
+<h1 id="logo"><a href="/">Погода 2.0</a></h1>
+
+<div id="toolbar">
+<p><a href="/sample">добавить данные</a> - <a href="/user">войти в
+кабинет</a> - <a href="http://wiki.github.com/kappa/pogoda">документация</a></p>
+</div>
+
+<div id="content">
+<p><% content %></p>
+</div>
+
+<div id="footer">Powered by <a href="http://spb.hackday.ru">Spb HackDay #2</a></div>
 </body>
 </html>
