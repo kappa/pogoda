@@ -3,12 +3,15 @@
 <% IF samples %>
 <h3>Ваши данные</h3>
 <table>
+<tr>
+<th>Время <th>Широта <th>Долгота <th>Температура
+</tr>
 <% FOREACH sample IN samples %>
 <tr>
-<td>Время: <% sample.ctime %>
-<td>Широта: <% sample.geo_lat %>
-<td>Долгота: <% sample.geo_long %>
-<td>Температура: <% sample.sensor_temp %>
+<td><% sample.ctime %>
+<td><% sample.geo_lat %>
+<td><% sample.geo_long %>
+<td><% sample.sensor_temp %>
 </tr>
 <% END %>
 </table>

@@ -33,6 +33,13 @@ body {
     padding-top: 0.5em;
 }
 
+table, td, th {
+    border: 1px solid black;
+}
+th {
+    font-weight: bold;
+}
+
 a { 
     color: #a5ec02;
 }
