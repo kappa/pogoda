@@ -12,5 +12,5 @@ my $kappa = $users->search({
 
 ok($kappa, 'Found kappa');
 
-is($kappa->passwd, 'passwd1');
-is($kappa->name, 'Alex Kapranoff');
+is($kappa->passwd, 'passwd1', 'Check passwd');
+is($kappa->name, 'Алексей Капранов', 'Check name');

@@ -20,7 +20,7 @@ my $params = {
 my $user = check_user($dbc, $params);
 ok($user, 'User kappa exists');
 
-is(get_user_samples($dbc, $user->id), 0, '0 user samples before adding');
+is(get_user_samples($dbc, $user), 0, '0 user samples before adding');
 
 my $rv = add_sample($dbc, $user, $params);
 
@@ -29,4 +29,4 @@ ok($rv, 'Added a sample for kappa!');
 my @samples = debug_all_samples($dbc);
 is(@samples, 1, '1 sample after adding');
 
-is(get_user_samples($dbc, $user->id), 1, '1 user sample after adding');
+is(get_user_samples($dbc, $user), 1, '1 user sample after adding');
