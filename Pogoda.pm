@@ -21,15 +21,18 @@ before sub {
 
 get '/sample' => sub {
     if (! session('user_id')) {
-        redirect '/user';
+        redirect '/user?back=/sample';
     }
-    template 'sample_web_form.tt';
+    template 'sample_web_form';
 };
 post '/sample' => sub {
+    if (! session('user_id')) {
+        redirect '/sample';
+    }
     if (params->{submit}) {
         add_sample(vars->{dbc}, params);
 
-        template 'thanks.tt';
+        template 'thanks';
     }
     else {
         status 503;
@@ -37,7 +40,7 @@ post '/sample' => sub {
 };
 
 get '/user' => sub {
-    template 'login_or_reg.tt';
+    template 'login_or_reg';
 };
 
 post '/login' => sub {
@@ -48,6 +51,8 @@ post '/login' => sub {
         session user_id => $user->id;
         session user_login => $user->login;
     }
+
+    redirect params->{back} || '/';
 };
 
 post '/reg' => sub {
@@ -56,7 +61,7 @@ post '/reg' => sub {
     session user_id => $user->id;
     session user_login => $user->login;
 
-    template 'thanks.tt';
+    template 'thanks';
 };
 
 # --------------------------------------------------
@@ -70,7 +75,7 @@ get '/get_test_data' => sub {
 };
 
 get '/test_sample_form' => sub {
-    template 'sample_form.tt';
+    template 'sample_form';
 };
 
 get '/post_sample' => sub {

@@ -35,7 +35,7 @@ sub check_user {
         croak "Wrong passwd";
     }
 
-    return 1;
+    return $user;
 }
 
 sub debug_all_users {
