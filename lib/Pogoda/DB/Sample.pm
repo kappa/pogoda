@@ -6,6 +6,7 @@ __PACKAGE__->table('samples');
 __PACKAGE__->add_columns(qw/
     id
     userid
+    placeid
     geo_lat
     geo_long
     sensor_temp
