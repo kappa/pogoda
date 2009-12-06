@@ -1,1 +1,5 @@
 <h2>Спасибо!</h2>
+
+<% IF back_text %>
+<a href="<% back_url | html %>"><% back_text | html %></a>
+<% END %>

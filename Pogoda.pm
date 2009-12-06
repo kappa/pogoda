@@ -37,7 +37,11 @@ post '/sample' => sub {
     if (params->{submit}) {
         add_sample(vars->{dbc}, params);
 
-        template 'thanks' => { user => vars->{user} };
+        template 'thanks' => {
+            user => vars->{user},
+            back_text => 'Вернуться в кабинет',
+            back_url => '/user',
+        };
     }
     else {
         status 503;
