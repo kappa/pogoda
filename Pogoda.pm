@@ -55,7 +55,7 @@ get '/user' => sub {
 
     template 'user' => {
         user    => vars->{user},
-        samples => get_user_samples(vars->{dbc}, session('user_id'))
+        samples => [get_user_samples(vars->{dbc}, session('user_id'))]
     };
 };
 
