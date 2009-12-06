@@ -35,7 +35,7 @@ post '/sample' => sub {
         redirect '/sample';
     }
     if (params->{submit}) {
-        add_sample(vars->{dbc}, params);
+        add_sample(vars->{dbc}, vars->{user}, params);
 
         template 'thanks' => {
             user => vars->{user},

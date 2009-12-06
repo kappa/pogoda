@@ -7,12 +7,9 @@ use base 'Exporter';
 our @EXPORT = qw/add_sample debug_all_samples get_user_samples/;
 
 sub add_sample {
-    my ($dbc, $params) = @_;
+    my ($dbc, $user, $params) = @_;
 
-    my $user =
-    $dbc->resultset('User')->search({ login => $params->{login} })->first;
-
-    if ($user && $user->passwd eq $params->{passwd}) {
+    if ($user) {
         my $new_sample = $dbc->resultset('Sample')->new({
             userid      => $user->id,
             (map { $_ => $params->{$_} }
@@ -23,7 +20,7 @@ sub add_sample {
         return $new_sample;
     }
     else {
-        croak "Wrong passwd";
+        croak "Wrong user";
     }
 }
 

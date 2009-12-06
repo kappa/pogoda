@@ -22,7 +22,7 @@ ok($user, 'User kappa exists');
 
 is(get_user_samples($dbc, $user->id), 0, '0 user samples before adding');
 
-my $rv = add_sample($dbc, $params);
+my $rv = add_sample($dbc, $user, $params);
 
 ok($rv, 'Added a sample for kappa!');
 

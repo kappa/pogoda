@@ -5,6 +5,7 @@ use Pogoda::Test;
 my ($cfg, $dbc) = pogoda_test;
 
 use_ok('Pogoda::Samples');
+use_ok('Pogoda::Users');
 
 is(debug_all_samples($dbc), 0, '0 samples before adding');
 
@@ -16,7 +17,9 @@ my $params = {
     sensor_temp => '-8',
 };
 
-my $rv = add_sample($dbc, $params);
+my $user = check_user($dbc, $params);
+
+my $rv = add_sample($dbc, $user, $params);
 
 ok($rv, 'Added a sample for kappa!');
 
@@ -25,8 +28,6 @@ is(@samples, 1, '1 sample after adding');
 
 is($samples[0]->sensor_temp, -8, 'Verified added sample');
 
-$params->{passwd} .= 'bad';
-
-throws_ok { $rv = add_sample($dbc, $params) } qr/wrong passwd/i, 'Refused bad passwd';
+throws_ok { $rv = add_sample($dbc, undef, $params) } qr/wrong user/i, 'Refused bad user';
 
 is(debug_all_samples($dbc), 1, 'Still 1 sample after failed adding');
