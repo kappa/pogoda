@@ -19,7 +19,7 @@ get '/' => sub {
 
 before sub {
     var dbc =>
-        Pogoda::DB->connect("dbi:SQLite:dbname=" . set('sqlite_file_test')); # XXX
+        Pogoda::DB->connect("dbi:SQLite:dbname=" . set('sqlite_file'));
 
     if (session('user_id')) {
         var user => vars->{dbc}->resultset('User')->search({ id => session('user_id') })->first;
