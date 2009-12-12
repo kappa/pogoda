@@ -2,4 +2,4 @@ log: "debug"
 warnings: 1
 show_errors: 1
 auto_reload: 1
-
+sqlite_file: "/tmp/pogoda2-test.sqlite"

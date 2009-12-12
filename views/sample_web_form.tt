@@ -1,15 +1,15 @@
 <h2>Добавление данных</h2>
+<table><tr><td valign="top">
 <form method="post">
 <h3>Ваше местоположение</h3>
-<table><tr><td valign="top">
 Широта: <input name="geo_lat" id="geo-lat"><br>
 Долгота: <input name="geo_long" id="geo-long"><br>
-</td><td>
-<input type="text" id="search_field" value="" /> <input type="button" id="search_btn" value="Поискать" onClick="searchAddress();" /><br>
-<div id="map" style="width: 40em; height: 10em"></div>
-</tr></table>
 <h3>Ваши наблюдения</h3>
 Температура: <input name="sensor_temp"> C&deg;<br>
 <input type=submit name=submit value="Отправить!">
 <input type=hidden name=login value="<% user_login | html %>">
 </form>
+</td><td valign="top">
+<input type="text" id="search_field" value="" /> <input type="button" id="search_btn" value="Поискать" onClick="searchAddress();" /><br>
+<div id="map" style="width: 40em; height: 30em"></div>
+</tr></table>

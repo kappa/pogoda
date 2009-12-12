@@ -19,7 +19,7 @@ get '/' => sub {
 
 before sub {
     var dbc =>
-        Pogoda::DB->connect("dbi:SQLite:dbname=" . set('sqlite_file_test')); # XXX
+        Pogoda::DB->connect("dbi:SQLite:dbname=" . set('sqlite_file'));
 
     if (session('user_id')) {
         var user => vars->{dbc}->resultset('User')->search({ id => session('user_id') })->first;
@@ -132,10 +132,14 @@ get '/test_sample_form' => sub {
 
 get '/post_sample' => sub {
     eval {
-        add_sample(vars->{dbc}, params);
+        if (params->{login} && params->{passwd}
+            && (my $user = check_user(vars->{dbc}, params)))
+        {
+            add_sample(vars->{dbc}, $user, params);
+        }
     };
     if ($@) {
-        status 500;
+        status 503;
     }
     else {
         return "OK";
