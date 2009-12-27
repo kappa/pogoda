@@ -24,7 +24,7 @@
 </div>
 
 <div id="content">
-<p><% content %></p>
+<% content %>
 </div>
 
 <div id="footer">Powered by <a href="http://spb.hackday.ru">Spb HackDay #2</a>,
