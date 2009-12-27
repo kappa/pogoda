@@ -4,15 +4,10 @@
 		var curLong = null;
 		var curMarkerOverlay = null;
 		var userOverlays = [];
-		var temperatureData = [
-			{'lat': 59.956697, 'lng':30.311075, 'value': '23'},
-			{'lat': 59.957697, 'lng':30.311185, 'value': '24'},
-			{'lat': 59.958697, 'lng':30.311295, 'value': '25'},
-		];
 
 		var eventListeners = [];
 
-		function initialize() {
+		function initialize(temp_data) {
 			if (GBrowserIsCompatible()) {
 				map = new GMap2(document.getElementById("map"));
 				map.setCenter(new GLatLng(59.956697,30.311075), 15);
@@ -23,8 +18,8 @@
 					}
 				);
 				geocoder = new GClientGeocoder();
-                                if (window.show_temp_data)
-                                    showTemperatureData(temperatureData);
+                                if (temp_data)
+                                    showTemperatureData(temp_data);
                                 else
                                     setUserLocation('geo-lat','geo-long');
 			}

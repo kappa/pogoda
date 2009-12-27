@@ -23,6 +23,6 @@ var temperatureData = [
 {'lat':<% sample.geo_lat %>, 'lng':<% sample.geo_long %>, 'value':<% sample.sensor_temp %>},
 <% END %>
 ];
-var show_temp_data = 1;
+
+initialize(temperatureData);
 </script>
-</table>

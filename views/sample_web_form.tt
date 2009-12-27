@@ -13,3 +13,6 @@
 <input type="text" id="search_field" value="" /> <input type="button" id="search_btn" value="Поискать" onClick="searchAddress();" /><br>
 <div id="map" style="width: 40em; height: 30em"></div>
 </tr></table>
+<script>
+initialize();
+</script>
