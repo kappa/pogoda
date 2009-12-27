@@ -8,7 +8,8 @@ use strict;
 use warnings;
 
 get '/' => sub {
-    my @samples = debug_all_samples(vars->{dbc});
+    # XXX this filtering should be on INPUT to db
+    my @samples = grep { $_->geo_lat =~ /^\d+\.\d+$/ && $_->geo_long =~ /^\d+\.\d+$/ } debug_all_samples(vars->{dbc});
 
     template 'index' => {
         samples => \@samples,
