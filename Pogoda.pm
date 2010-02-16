@@ -45,7 +45,7 @@ post '/sample' => sub {
         redirect '/sample';
     }
     if (params->{submit}) {
-        add_sample(vars->{dbc}, vars->{user}, params);
+        add_sample(vars->{dbc}, vars->{user}, {params});
 
         template 'thanks' => {
             user => vars->{user},
@@ -90,7 +90,7 @@ get '/login' => sub {
 post '/login' => sub {
     my $user;
     if (params->{login} && params->{passwd}
-        && ($user = check_user(vars->{dbc}, params)))
+        && ($user = check_user(vars->{dbc}, {params})))
     {
         session user_id => $user->id;
         session user_login => $user->login;
@@ -109,7 +109,7 @@ get '/reg' => sub {
 };
 
 post '/reg' => sub {
-    my $user = add_user(vars->{dbc}, params);
+    my $user = add_user(vars->{dbc}, {params});
 
     session user_id => $user->id;
     session user_login => $user->login;
