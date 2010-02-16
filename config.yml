@@ -2,5 +2,5 @@ layout: "main"
 logger: "file"
 port: 3042
 template: template_toolkit
-session: "yaml"
+session: "YAML"
 session_dir: "/tmp/pogoda2/sessions"
