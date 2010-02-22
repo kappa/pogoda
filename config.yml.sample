@@ -2,5 +2,7 @@ layout: "main"
 logger: "file"
 port: 3042
 template: template_toolkit
-session: "yaml"
+session: "Cookie"
+session_cookie_key: "asuo32kjid^&1237flkjk128kjfd"
 session_dir: "/tmp/pogoda2/sessions"
+environment: production
