@@ -4,14 +4,14 @@
 <tr>
 <th>Время <th>Широта <th>Долгота <th>Температура
 </tr>
-<% FOREACH sample IN samples %>
+<?pl for (@$samples) { ?>
 <tr>
-<td><% sample.ctime %>
-<td><% sample.geo_lat %>
-<td><% sample.geo_long %>
-<td><% sample.sensor_temp %>
+<td>[= $_->ctime =]
+<td>[= $_->geo_lat =]
+<td>[= $_->geo_long =]
+<td>[= $_->sensor_temp =]
 </tr>
-<% END %>
+<?pl } ?>
 </table>
 <br>
 
@@ -19,9 +19,9 @@
 
 <script>
 var temperatureData = [
-<% FOREACH sample IN samples %>
-{'lat':<% sample.geo_lat %>, 'lng':<% sample.geo_long %>, 'value':<% sample.sensor_temp %>},
-<% END %>
+<?pl for (@$samples) { ?>
+{'lat':[= $_->geo_lat =], 'lng':[= $_->geo_long =], 'value':[= $_->sensor_temp =]},
+<?pl } ?>
 ];
 
 initialize(temperatureData);

@@ -7,5 +7,5 @@
 Имя: <input name=name><br>
 Email: <input name=email>
 <input type=submit value="Зарегистрироваться">
-<input type=hidden name=back value="<% back | html %>">
+<input type=hidden name=back value="[= $back =]">
 </form>

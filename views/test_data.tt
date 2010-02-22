@@ -1,10 +1,10 @@
 <table>
-<% FOREACH sample IN samples %>
+<?pl for (@$samples) { ?>
 <tr>
-<td>time: <% sample.ctime %>
-<td>latitude: <% sample.geo_lat %>
-<td>longtitude: <% sample.geo_long %>
-<td>sensor_temp: <% sample.sensor_temp %>
+<td>time: [= $_->ctime =]
+<td>latitude: [= $_->geo_lat =]
+<td>longtitude: [= $_->geo_long =]
+<td>sensor_temp: [= $_->sensor_temp =]
 </tr>
-<% END %>
+<?pl } ?>
 </table>
